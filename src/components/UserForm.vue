@@ -30,9 +30,9 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="gender">Gênero</label>
       </div>
-      <label class="genero" for="f">Feminino</label>
+      <label class="gender" for="f">Feminino</label>
       <input class="input" type="radio" id="f" value="Feminino" v-model="formulario.selectedgender" />
-      <label class="genero" for="m">Masculino</label>
+      <label class="gender" for="m">Masculino</label>
       <input
         class="input"
         type="radio"
@@ -168,7 +168,7 @@ export default {
 .area {
   display: block;
 }
-.genero {
+.gender {
   margin: 5px 10px 0 0;
 }
 .input {
