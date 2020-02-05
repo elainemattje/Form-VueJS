@@ -1,11 +1,11 @@
 <template>
   <form class="form-group" id="register" name="novo_cadastro">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="nome">Nome</label>
+      <label class="input-group-text" for="name">Nome</label>
     </div>
     <div>
       <input
-        v-model="formulario.nome"
+        v-model="formulario.name"
         placeholder="Digite o nome do candidato"
         class="form-control"
         type="text"
@@ -14,11 +14,11 @@
     </div>
     <br />
     <div class="input-group-prepend">
-      <label class="input-group-text" for="telefone">Telefone</label>
+      <label class="input-group-text" for="phone">Telefone</label>
     </div>
     <div>
       <input
-        v-model="formulario.telefone"
+        v-model="formulario.phone"
         placeholder="Digite o telefone"
         class="form-control"
         type="text"
@@ -28,17 +28,17 @@
     <br />
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <label class="input-group-text" for="genero">Gênero</label>
+        <label class="input-group-text" for="gender">Gênero</label>
       </div>
       <label class="genero" for="f">Feminino</label>
-      <input class="input" type="radio" id="f" value="Feminino" v-model="formulario.selectedGenero" />
+      <input class="input" type="radio" id="f" value="Feminino" v-model="formulario.selectedgender" />
       <label class="genero" for="m">Masculino</label>
       <input
         class="input"
         type="radio"
         id="m"
         value="Masculino"
-        v-model="formulario.selectedGenero"
+        v-model="formulario.selectedgender"
       />
     </div>
     <br />
@@ -54,23 +54,23 @@
       <br />
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text" for="experiencia">Experiência</label>
+          <label class="input-group-text" for="experience">Experiência</label>
         </div>
-        <select v-model="formulario.selectedExperiencia" class="custom-select" required>
+        <select v-model="formulario.selectedExperience" class="custom-select" required>
           <option
-            v-for="(experiencia, index) in selectExperiencia"
+            v-for="(experience, index) in selectExperience"
             :key="index"
-            :value="experiencia"
-          >{{ experiencia }}</option>
+            :value="experience"
+          >{{ experience }}</option>
         </select>
       </div>
       <br />
       <div class="input-group-prepend">
-        <label class="input-group-text" for="observacao">Observações</label>
+        <label class="input-group-text" for="considerations">Observações</label>
       </div>
       <div>
         <textarea
-          v-model="formulario.observacao"
+          v-model="formulario.considerations"
           placeholder="Observações"
           class="form-control--textarea"
           type="text"
@@ -96,14 +96,14 @@ export default {
   data() {
     return {
       formulario: {
-        nome: "",
-        telefone: "",
-        selectedGenero: "",
+        name: "",
+        phone: "",
+        selectedgender: "",
         selectedArea: "",
-        selectedExperiencia: "",
-        observacao: " "
+        selectedExperience: "",
+        considerations: " "
       },
-      selectGenero: {
+      selectgender: {
         feminino: "feminino",
         masculino: "masculino"
       },
@@ -114,12 +114,12 @@ export default {
         qa: "QA",
         content: "Content"
       },
-      selectExperiencia: {
-        ate_6_meses: "Até 6 meses",
-        de_6_meses_a_1_ano: "De 6 meses a 1 ano",
-        ano_1: "1 Ano",
-        ano_2: "2 Anos",
-        acima_de_2_anos: "Acima de 2 anos"
+      selectExperience: {
+        upTo6Months: "Até 6 meses",
+        from6MonthsTo1Year: "De 6 meses a 1 ano",
+        Year1: "1 Ano",
+        Year2: "2 Anos",
+        moreThan2Years: "Acima de 2 anos"
       }
     };
   },
