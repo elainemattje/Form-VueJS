@@ -1,26 +1,38 @@
 <template>
-  <h1>Consulta CEP</h1>
-  <!-- <div class="consultaCEP"> -->
-  <!-- <input v-model="consultaCEP.cep" placeholder="Digite o cep" type="text" {{ cep }} /> -->
-  <!-- </div> -->
+  <div class="container">
+    <h1>Consulta Bitcoin</h1>
+    {{consulta.bitcoin}}
+  </div>
 </template>>
 <script>
-// import axios from "axios";
+import axios from "axios";
+
 export default {
   data() {
     return {
-      consultaCEP: {
-        cep: null
+      consulta: {
+        bitcoin: null
       }
     };
   },
   created: function() {
-    this.buscaCep();
+    this.buscaBitcoin();
   },
   methods: {
-    buscaCep: function() {
-      //   axios.get("http://").then(response => (this.cep = response));
+    buscaBitcoin: function() {
+      axios
+        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then(response => (this.consulta.bitcoin = response));
     }
   }
 };
 </script>>
+<style>
+.container {
+  width: 50%;
+  height: 500px;
+  background-color: rgb(122, 212, 235);
+  text-align: center;
+  padding: 10px;
+}
+</style>
