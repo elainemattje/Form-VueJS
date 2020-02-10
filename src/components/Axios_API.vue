@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1>Consulta Bitcoin</h1>
-    {{consulta.bitcoin}}
+    <h1>Bitcoin Prices</h1>
+    {{currency.description}}
   </div>
 </template>>
 <script>
@@ -10,19 +10,19 @@ import axios from "axios";
 export default {
   data() {
     return {
-      consulta: {
-        bitcoin: null
+      currency: {
+        description: null
       }
     };
   },
   created: function() {
-    this.buscaBitcoin();
+    this.bitcoinPrices();
   },
   methods: {
-    buscaBitcoin: function() {
+    bitcoinPrices: function() {
       axios
         .get("https://api.coindesk.com/v1/bpi/currentprice.json")
-        .then(response => (this.consulta.bitcoin = response));
+        .then(response => (this.currency.description = response.data.bpi));
     }
   }
 };
