@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-    <h1>Bitcoin Prices</h1>
+    <h1>Personal Data</h1>
     <div class="bitcoin">
       <table class="painting">
         <thead>
-          <th>Code</th>
-          <th>Description</th>
-          <th>Rate</th>
-          <th>Symbol</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Salary</th>
         </thead>
         <tbody>
-          <transition-group name="fade" tag="tr" v-for="(bitcoin, index) in info" :key="index">
-            <td :key="index + bitcoin.code">{{bitcoin.code}}</td>
-            <td :key="index + bitcoin.description">{{bitcoin.description}}</td>
-            <td :key="index + bitcoin.rate">{{bitcoin.rate}}</td>
-            <td :key="index + bitcoin.symbol">{{bitcoin.symbol}}</td>
+          <transition-group name="fade" tag="tr" v-for="(inform, index) in info" :key="index">
+            <td :key="`${index}_id`">{{inform.id}}</td>
+            <td :key="`${index}_name`">{{inform.employee_name}}</td>
+            <td :key="`${index}_age`">{{inform.employee_age}}</td>
+            <td :key="`${index}_salary`">{{inform.employee_salary}}</td>
           </transition-group>
         </tbody>
       </table>
@@ -29,37 +29,41 @@
 import axios from "axios";
 
 export default {
+  name: "AxiosDummy",
   data() {
     return {
-      info: null,
+      info: [],
       loading: true,
       errored: false
     };
   },
   mounted: function() {
     setTimeout(() => {
-      this.getBitcoinPrices();
-    }, 5000);
+      this.getPersonalData();
+    }, 2000);
   },
+
   methods: {
-    getBitcoinPrices: function() {
+    getPersonalData: function() {
       axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.jsosn")
-        .then(response => (this.info = response.data.bpi))
-        .catch(error => {
-          //eslint-disable-next-line no-console
-          console.log(error);
-          this.errored = true;
-        })
-        .finally(() => (this.loading = false));
+        .get("http://dummy.restapiexample.com/api/v1/employees")
+        .then(response => {
+          this.info = response.data.data;
+        });
+      // .catch(error => {
+      //   //eslint-disable-next-line no-console
+      //   console.log(error);
+      //   this.errored = true;
+      // });
+      // .finally(() => (this.loading = false));
     }
   }
 };
 </script>>
 <style>
 .container {
-  width: 50%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background-color: rgb(122, 212, 235);
   text-align: center;
   padding: 10px;
