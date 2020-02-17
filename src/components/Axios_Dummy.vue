@@ -21,19 +21,28 @@
     </div>
     <div class="register">
       <div class="regsiter--item">
-        <label class="name" for="name">Name</label>
-        <input class="input" type="text" name="name" v-model="inform.employee_name" />
+        <input
+          class="input"
+          type="text"
+          name="name"
+          v-model="inform.employee_name"
+          placeholder="Name"
+        />
       </div>
       <div class="regsiter--item">
-        <label class="name" for="age">Age</label>
-        <input class="input" type="text" name="age" v-model="inform.employee_age" />
+        <input class="input" type="text" name="age" v-model="inform.employee_age" placeholder="Age" />
       </div>
       <div class="regsiter--item">
-        <label class="name" for="salary">Salary</label>
-        <input class="input" type="text" name="salary" v-model="inform.employee_salary" />
+        <input
+          class="input"
+          type="text"
+          name="salary"
+          v-model="inform.employee_salary"
+          placeholder="Salary"
+        />
       </div>
       <div class="regsiter--item">
-        <button class="btn" type="submit">Register</button>
+        <button @click="register" class="btn" type="submit">Register</button>
       </div>
     </div>
 
@@ -73,13 +82,25 @@ export default {
         .get("http://dummy.restapiexample.com/api/v1/employees")
         .then(response => {
           this.info = response.data.data;
+        })
+        .catch(error => {
+          //eslint-disable-next-line no-console
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
+    },
+    register: function() {
+      axios
+        .post("http://dummy.restapiexample.com/api/v1/create", {
+          name: `${this.inform.employee_name}`,
+          age: `${this.inform.employee_age}`,
+          salary: `${this.inform.employee_salary}`
+        })
+        .then(response => {
+          //eslint-disable-next-line no-console
+          console.log(response);
         });
-      // .catch(error => {
-      //   //eslint-disable-next-line no-console
-      //   console.log(error);
-      //   this.errored = true;
-      // });
-      // .finally(() => (this.loading = false));
     }
   }
 };
@@ -101,6 +122,7 @@ td {
   width: 800px;
   margin: 20px;
   background-color: rgb(104, 196, 233);
+  text-align: center;
 }
 
 th {
@@ -125,15 +147,18 @@ td {
 }
 
 .input {
-  margin: 10px 0 0 50px;
-  width: 600px;
+  margin: 10px 0 0 20px;
+  padding: 5px;
+  width: 780px;
   height: 20px;
 }
 
 .btn {
   font-size: 15px;
-  padding: 10px;
+  padding: 8px;
+  width: 100px;
   margin: 10px 0 0 20px;
+  background-color: rgb(73, 185, 230);
 }
 .fade-enter-active,
 .fade-leave-active {
