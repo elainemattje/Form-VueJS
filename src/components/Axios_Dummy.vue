@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Personal Data</h1>
-    <div class="bitcoin">
+    <div class="employees">
       <table class="painting">
         <thead>
           <th>ID</th>
@@ -20,7 +20,7 @@
       </table>
     </div>
     <div class="register">
-      <div class="regsiter--item">
+      <div class="register--item">
         <input
           class="input"
           type="text"
@@ -29,19 +29,27 @@
           placeholder="Name"
         />
       </div>
-      <div class="regsiter--item">
-        <input class="input" type="text" name="age" v-model="inform.employee_age" placeholder="Age" />
-      </div>
-      <div class="regsiter--item">
+      <div class="register--item">
         <input
           class="input"
-          type="text"
+          type="number"
+          min="16"
+          max="110"
+          name="age"
+          v-model="inform.employee_age"
+          placeholder="Age"
+        />
+      </div>
+      <div class="register--item">
+        <input
+          class="input"
+          type="number"
           name="salary"
           v-model="inform.employee_salary"
           placeholder="Salary"
         />
       </div>
-      <div class="regsiter--item">
+      <div class="register--item">
         <button @click="register" class="btn" type="submit">Register</button>
       </div>
     </div>
@@ -70,7 +78,7 @@ export default {
       errored: false
     };
   },
-  mounted: function() {
+  mounted() {
     setTimeout(() => {
       this.getPersonalData();
     }, 2000);
